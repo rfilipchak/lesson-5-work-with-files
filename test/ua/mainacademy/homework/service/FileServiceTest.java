@@ -20,20 +20,20 @@ class FileServiceTest {
 
     private static final String TEST_DIR = "/Users/roman/IdeaProjects/lesson-5-work-with-files/test/resources";
     private final String textInfo = "textInfo.txt";
+    private final String newInfo = "newtInfo.txt";
     private final String textInfoToCompare = "textInfoToCompare.txt";
-
-
     private final String expectedFile = "expectedTestInfo.txt";
     private final String expectedObject = "expectedObject.txt";
     private final String filePath = TEST_DIR + "/" + textInfo;
     private final String expectedPath = TEST_DIR + "/" + expectedFile;
+    private final String newInfoPath = TEST_DIR + "/" + newInfo;
     private final String expectedObjectPath = TEST_DIR + "/" + expectedObject;
     private final String textInfoToComparePath = TEST_DIR + "/" + textInfoToCompare;
 
     @AfterAll
     public static void tearDown() {
-        File file = new File("/Users/roman/IdeaProjects/lesson-5-work-with-files/test/resources/textInfo.txt");
-        file.delete();
+        new File("/Users/roman/IdeaProjects/lesson-5-work-with-files/test/resources/textInfo.txt").delete();
+        new File("/Users/roman/IdeaProjects/lesson-5-work-with-files/test/resources/newInfo.txt").delete();
     }
 
     @Test
@@ -41,10 +41,10 @@ class FileServiceTest {
         ConnectionInfo info = new ConnectionInfo(157, 1609797190524L, "123.123.123.0");
         ConnectionInfo secondInfo = new ConnectionInfo(158, 1609797190524L, "123.123.123.0");
 
-        writeConnectionInfoToFileToSeparateLine(info, TEST_DIR, textInfo);
-        writeConnectionInfoToFileToSeparateLine(secondInfo, TEST_DIR, textInfo);
+        writeConnectionInfoToFileToSeparateLine(info, TEST_DIR, newInfo);
+        writeConnectionInfoToFileToSeparateLine(secondInfo, TEST_DIR, newInfo);
 
-        assertTrue(sameContent(new File(filePath), new File(expectedPath)));
+        assertTrue(sameContent(new File(newInfoPath), new File(expectedPath)));
     }
 
     @Test
@@ -108,9 +108,9 @@ class FileServiceTest {
 
     @Test
     void readComparedConnectionInfoToFileForNullTimeTest() throws FileOperationException, IOException {
-        readComparedConnectionInfoToFile(TEST_DIR, "sourceInfo.txt", "textInfo.txt", null);
+        readComparedConnectionInfoToFile(TEST_DIR, "sourceInfo.txt", "newInfo.txt", null);
 
-        assertTrue(sameContent(new File(filePath), new File(TEST_DIR + "/" + "sourceInfo.txt")));
+        assertTrue(sameContent(new File(TEST_DIR + "/" + "newInfo.txt"), new File(TEST_DIR + "/" + "sourceInfo.txt")));
     }
 
     @Test
