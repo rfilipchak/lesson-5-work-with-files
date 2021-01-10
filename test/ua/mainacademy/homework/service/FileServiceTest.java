@@ -20,7 +20,7 @@ class FileServiceTest {
 
     private static final String TEST_DIR = "/Users/roman/IdeaProjects/lesson-5-work-with-files/test/resources";
     private final String textInfo = "textInfo.txt";
-    private final String newInfo = "newtInfo.txt";
+    private final String newInfo = "newInfo.txt";
     private final String textInfoToCompare = "textInfoToCompare.txt";
     private final String expectedFile = "expectedTestInfo.txt";
     private final String expectedObject = "expectedObject.txt";
@@ -31,9 +31,9 @@ class FileServiceTest {
     private final String textInfoToComparePath = TEST_DIR + "/" + textInfoToCompare;
 
     @AfterAll
-    public static void tearDown() {
-        new File("/Users/roman/IdeaProjects/lesson-5-work-with-files/test/resources/textInfo.txt").delete();
-        new File("/Users/roman/IdeaProjects/lesson-5-work-with-files/test/resources/newInfo.txt").delete();
+    public static void tearDown(){
+        new File("/Users/roman/IdeaProjects/lesson-5-work-with-files/test/resources/textInfo.txt").deleteOnExit();
+        new File("/Users/roman/IdeaProjects/lesson-5-work-with-files/test/resources/newInfo.txt").deleteOnExit();
     }
 
     @Test
